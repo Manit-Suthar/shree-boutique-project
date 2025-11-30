@@ -1,0 +1,23 @@
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Light Theme */
+  body {
+    background: linear-gradient(to bottom, #ffe6ef 0%, #fff6fa 40%, #ffffff 100%);    color: #1a1a1a;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+  
+  /* Dark Theme */
+  body.dark {
+    background-color: #0d0d0d;
+    color: #f5f5f5;
+  }
+  

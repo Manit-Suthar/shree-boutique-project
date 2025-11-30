@@ -1,0 +1,156 @@
+/* FOOTER WRAPPER */
+.footer {
+  background-color: #fffbfd; /* Matches the soft pink theme */
+  border-top: 1px solid #e6d5db; /* Separator from Map section */
+  padding-top: 60px;
+}
+
+.container {
+  max-width: 1000px; /* Aligns with Map Section width */
+  margin: 0 auto;
+  padding: 0 20px;
+  
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.2fr; /* Logo column is wider */
+  gap: 40px;
+  padding-bottom: 50px;
+}
+
+/* COLUMNS */
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* LOGO & TAGLINE */
+.logoLink {
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.logo {
+  width: 140px; /* Controlled size */
+  height: auto;
+  display: block;
+}
+
+.tagline {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+  max-width: 300px;
+  margin-bottom: 20px;
+}
+
+/* SOCIAL ICONS */
+.socials {
+  display: flex;
+  gap: 15px;
+}
+
+.socialIcon {
+  color: #b76e79;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.socialIcon:hover {
+  color: #9c5661;
+  transform: translateY(-2px);
+}
+
+/* HEADINGS */
+.heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: #b76e79;
+  margin-bottom: 20px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* LINKS */
+.linkStack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.link {
+  font-size: 14px;
+  color: #555;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.link:hover {
+  color: #b76e79;
+  padding-left: 4px; /* Subtle movement on hover */
+}
+
+/* CONTACT ITEMS */
+.contactItem {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 18px;
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.icon {
+  color: #b76e79;
+  min-width: 18px; /* Prevents squishing */
+  margin-top: 3px;
+}
+
+.phoneLink {
+  color: #555;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.phoneLink:hover {
+  color: #b76e79;
+}
+
+/* BOTTOM COPYRIGHT BAR */
+.bottomBar {
+  border-top: 1px solid #f0e1e6;
+  padding: 20px 0;
+  background-color: #fff6f9; /* Slightly darker pink for contrast */
+}
+
+.bottomContainer {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: center;
+  font-size: 13px;
+  color: #888;
+}
+
+/* ----------------------------- */
+/* RESPONSIVE (Mobile)         */
+/* ----------------------------- */
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr; /* Stack all columns */
+    gap: 40px;
+    text-align: center;
+  }
+
+  /* Center align items for mobile layout */
+  .column {
+    align-items: center; 
+  }
+
+  .tagline {
+    margin: 0 auto 20px auto; /* Center tagline */
+  }
+
+  .link:hover {
+    padding-left: 0; /* Remove horizontal movement on mobile */
+  }
+}

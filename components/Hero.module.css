@@ -1,0 +1,122 @@
+/* GLOBAL FIX */
+html, body {
+  width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* ============================== */
+/*         HERO SECTION           */
+/* ============================== */
+
+.hero {
+  width: 100%;
+  padding: 80px 22px;
+  text-align: center;
+  background: linear-gradient(
+    to bottom,
+    #fff7fb 0%,
+    #ffeaf3 40%,
+    #ffffff 100%
+  );
+  box-sizing: border-box;
+}
+
+/* Dark Mode */
+body.dark .hero {
+  background: linear-gradient(to bottom, #141414, #000000);
+}
+
+/* MAIN TITLE */
+.heading {
+  font-family: "Playfair Display", serif;
+  font-size: 20px;
+  font-weight: 200;
+  color: #d8769b;
+  margin: 0 auto 18px auto;
+  max-width: 650px;
+  line-height: 1.25;
+}
+
+body.dark .heading {
+  color: #f2d3a3;
+}
+
+/* SUBTITLE */
+.subtitle {
+  font-size: 18px;
+  color: #555;
+  margin: 0 auto 32px auto;
+  max-width: 420px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+body.dark .subtitle {
+  color: #d8d8d8;
+}
+
+/* CTA BUTTON */
+.ctaButton {
+  display: inline-block;
+  background: linear-gradient(90deg, #6dd468, #86cd80);
+  color: #fff;
+  padding: 14px 30px;
+  font-size: 17px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+
+  box-shadow: 0px 6px 18px rgba(200, 75, 123, 0.25);
+  transition: 0.3s ease;
+}
+
+.ctaButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 8px 22px rgba(200, 75, 123, 0.35);
+}
+
+/* Dark Mode Button */
+body.dark .ctaButton {
+  background: linear-gradient(90deg, #f1c27d, #d9a96b);
+  color: #000;
+}
+
+/* ------------------------------ */
+/*          RESPONSIVE            */
+/* ------------------------------ */
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 60px 18px;
+  }
+
+  .heading {
+    font-size: 28px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+    max-width: 320px;
+  }
+
+  .ctaButton {
+    font-size: 15px;
+    padding: 12px 26px;
+  }
+}
+
+@media (max-width: 360px) {
+  .heading {
+    font-size: 24px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .ctaButton {
+    font-size: 14px;
+    padding: 10px 22px;
+  }
+}

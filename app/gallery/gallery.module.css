@@ -1,0 +1,111 @@
+/* SECTION WRAPPER */
+.section {
+    padding: 60px 20px;
+    background: #fff6f9; /* soft boutique pink */
+  }
+  
+  /* TITLE */
+  .title {
+    text-align: center;
+    font-size: 32px;
+    color: #c84b7b;
+    font-weight: 700;
+    margin-bottom: 30px;
+  }
+  
+  /* FILTER BUTTONS */
+  .filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  
+  .filterBtn {
+    padding: 8px 18px;
+    border-radius: 8px;
+    background: white;
+    border: 1.6px solid #c84b7b;
+    color: #c84b7b;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s ease;
+  }
+  
+  .filterBtn:hover {
+    background: #c84b7b;
+    color: white;
+  }
+  
+  .active {
+    background: #c84b7b;
+    color: white;
+  }
+  
+  /* ------- CLEAN SYMMETRIC GRID ------- */
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 22px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* IMAGE CARD */
+  .imageWrapper {
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid #f3c3d7;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  
+  .imageWrapper:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+  }
+  
+  .image {
+    width: 100%;
+    height: 320px;
+    object-fit: contain; /* Show whole image */
+    background: white;   /* Optional clean background */
+    padding: 8px;        /* Optional spacing */
+    border-radius: 12px;
+  }
+  
+  
+  .image:hover {
+    transform: scale(1.05);
+  }
+  
+  /* ------- FULLSCREEN MODAL ------- */
+  
+  .modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+    z-index: 999;
+    padding: 20px;
+  }
+  
+  .modalImg {
+    max-width: 90%;
+    max-height: 90vh;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  }
+  .activeBtn {
+    background: #c84b7b;
+    color: white;
+    border-color: #c84b7b;
+    box-shadow: 0 3px 8px rgba(200, 75, 123, 0.25);
+  }
+    

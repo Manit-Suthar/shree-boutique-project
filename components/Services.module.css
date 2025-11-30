@@ -1,0 +1,148 @@
+/* SECTION SETUP */
+.section {
+  padding: 80px 20px;
+  background: linear-gradient(to bottom, #fff7fb, #fff0f6, #ffffff);
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* HEADER TYPOGRAPHY */
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.title {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  color: #b75077;   /* improved */
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.divider {
+  width: 60px;
+  height: 3px;
+  background-color: #b76e79;
+  margin: 0 auto 20px auto;
+  border-radius: 2px;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #666;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* GRID LAYOUT */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 30px;
+}
+
+/* CARD DESIGN */
+.card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+  border: 1px solid #fceef2;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  border-color: #e9a3bc;   /* subtle glow */
+  box-shadow: 0 10px 30px rgba(183, 110, 121, 0.18);
+}
+
+/* IMAGE AREA */
+.imageWrapper {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .image {
+  transform: scale(1.08);
+}
+
+/* TEXT CONTENT */
+.cardContent {
+  padding: 20px;
+  text-align: center;
+}
+
+.cardTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: #4a4a4a;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.cardDesc {
+  font-size: 14px;
+  color: #888;
+}
+
+/* ----------------------------- */
+/* MOBILE IMPROVEMENTS          */
+/* ----------------------------- */
+
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 15px;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  /* More intelligent responsive grid */
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 18px;
+  }
+
+  .cardContent {
+    padding: 12px;
+  }
+
+  .cardTitle {
+    font-size: 16px;
+  }
+
+  .cardDesc {
+    display: none;
+  }
+}
+
+/* VERY SMALL PHONES */
+@media (max-width: 360px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cardDesc {
+    display: block;
+  }
+}
