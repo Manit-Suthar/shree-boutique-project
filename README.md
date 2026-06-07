@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Shree Boutique
 
-## Getting Started
+A professional web application for Shree Boutique, featuring a modern frontend architecture and a headless content management system. 
 
-First, run the development server:
+## Technical Architecture
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Frontend Framework: Next.js (App Router)
+- UI Library: React 19
+- Styling: Tailwind CSS & CSS Modules
+- Animations: Framer Motion
+- Content Management: Sanity CMS
+- Deployment: Vercel
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Key Features
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- Server-Side Rendering (SSR) for optimized performance and SEO.
+- Fully responsive design engineered with Tailwind CSS and custom module scoping.
+- Headless CMS integration allowing administrators to securely update gallery images and client testimonials in real-time.
+- Next.js Image optimization for rapid asset delivery.
+- Interactive routing and client-side transitions.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Local Development Setup
 
-## Learn More
+To run this project locally, ensure you have Node.js installed, then execute the following commands:
 
-To learn more about Next.js, take a look at the following resources:
+1. Install dependencies:
+   npm install
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. Configure environment variables. You will need to create a `.env.local` file with the appropriate Sanity credentials:
+   NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
+   NEXT_PUBLIC_SANITY_DATASET=production
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. Start the development server:
+   npm run dev
 
-## Deploy on Vercel
+The application will be accessible at http://localhost:3000. 
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Content Management
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Administrators can manage the website content by navigating to `/studio`. The studio is integrated directly into the Next.js application, eliminating the need for a separate deployment. Data is revalidated automatically to ensure the live application remains synchronized with the CMS.
