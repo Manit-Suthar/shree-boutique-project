@@ -1,4 +1,4 @@
-export default {
+const productGallery = {
   name: 'productGallery',
   title: 'Boutique Gallery',
   type: 'document',
@@ -21,7 +21,7 @@ export default {
           { title: 'Frock', value: 'frock' },
           { title: 'Western', value: 'western' },
           { title: 'Kids Wear', value: 'kids' },
-          { title: 'Alterations', value: 'alterations' },
+          // { title: 'Alterations', value: 'alterations' },
           { title: 'Other', value: 'other' },
         ],
       },
@@ -47,3 +47,5 @@ export default {
     },
   ],
 };
+
+export default productGallery;

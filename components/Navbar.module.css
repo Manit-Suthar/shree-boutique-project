@@ -3,30 +3,39 @@
   font-family: 'Playfair Display', serif;
 }
 
-/* FIXED NAVBAR */
-.nav {
+/* HEADER WRAPPER */
+.headerWrap {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  /* Padding 18px + Container 65px = Approx 101px total height */
-  padding: 18px 0;
-  background: #fffbfd; /* Solid background so menu hides behind it */
-  border-bottom: 1px solid transparent;
-  /* Higher Z-index than menu so it stays on top */
-  z-index: 3005; 
+  z-index: 3005;
+}
+
+/* NAVBAR */
+.nav {
+  width: 100%;
+  padding: 16px 0;
+  background: rgba(255, 251, 253, 0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(183, 110, 121, 0.15);
   transition: all 0.35s ease;
 }
 
 .scrolled {
-  padding: 12px 0; /* Shrink slightly on scroll */
+  padding: 10px 0;
   border-bottom: 1px solid #e3c2cc;
   box-shadow: 0 6px 25px rgba(183, 110, 121, 0.15);
 }
 
 /* SPACER */
 .navSpacer {
-  height: 100px;
+  height: 132px;
+  transition: height 0.25s ease;
+}
+
+.navSpacerNoBanner {
+  height: 98px;
 }
 
 /* CONTAINER */
@@ -154,7 +163,8 @@
   .logo { height: 60px; }
   .container { padding: 0 18px; }
   /* Height adjustment for Spacer on mobile */
-  .navSpacer { height: 90px; }
+  .navSpacer { height: 120px; }
+  .navSpacerNoBanner { height: 86px; }
 }
 
 /* ------------------------------------------- */
@@ -162,14 +172,14 @@
 /* ------------------------------------------- */
 
 .mobileMenu {
-  position: fixed;
-  /* Top 100px ensures it starts BELOW the navbar */
-  top: 100px; 
+  position: absolute;
+  /* Top 100% ensures it starts IMMEDIATELY BELOW whatever the header height is */
+  top: 100%; 
   left: 0;
   width: 100%;
-  height: calc(100vh - 100px); /* Fill rest of screen */
-  background: rgba(0,0,0,0.3);
-  /* Lower Z-index than Nav (3005) so it slides from behind if needed */
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
   z-index: 2999; 
   opacity: 0;
   pointer-events: none;

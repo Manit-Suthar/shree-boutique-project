@@ -6,6 +6,15 @@ export const structure = (S) =>
   S.list()
     .title('Content')
     .items([
+      // 1. Homepage Settings
+      S.listItem()
+        .title('Homepage Settings')
+        .icon(Settings)
+        .child(
+          S.documentTypeList('homepageSettings')
+            .title('Homepage Settings')
+        ),
+
       // 2. Document List (Boutique Gallery - List of items)
       S.listItem()
         .title('Boutique Gallery')

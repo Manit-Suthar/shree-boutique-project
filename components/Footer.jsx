@@ -12,7 +12,7 @@ export default function Footer() {
             <div className={styles.container}>
 
                 {/* Column 1: Brand & Socials */}
-                <div className={styles.column}>
+                <div className={`${styles.column} ${styles.brandColumn}`}>
                     <Link href="/" className={styles.logoLink}>
                         <img src="/logo/logo.png" alt="Shree Boutique" className={styles.logo} />
                     </Link>

@@ -20,30 +20,68 @@ const categories = [
   "Blouse",
   "Chaniya Choli",
   "Kurti",
-  "Western",
-  "Kids Wear",
-  "Alterations",
   "Dress",
   "Frock",
+  "Western",
+  "Kids Wear",
+  // "Alterations",
+  "Other",
 ];
 
-// Map Sanity values → UI filter names
+// Map normalized Sanity values → UI filter names
 const categoryMap = {
+  // Blouses
   blouse: "Blouse",
-  chaniyaCholi: "Chaniya Choli",
+  blouses: "Blouse",
+
+  // Chaniya Choli variations
+  chaniyacholi: "Chaniya Choli",
+  chaniyacholis: "Chaniya Choli",
+  chaniya: "Chaniya Choli",
+  choli: "Chaniya Choli",
+  lehenga: "Chaniya Choli",
+
+  // Kurti variations (singular & plural)
+  kurti: "Kurti",
   kurtis: "Kurti",
+  kurta: "Kurti",
+
+  // Western
   western: "Western",
+  westernwear: "Western",
+
+  // Kids Wear
   kids: "Kids Wear",
-  alterations: "Alterations",
+  kidswear: "Kids Wear",
+  kid: "Kids Wear",
+
+  // // Alterations
+  // alteration: "Alterations",
+  // alterations: "Alterations",
+
+  // Dress
   dress: "Dress",
+  dresses: "Dress",
+
+  // Frock
   frock: "Frock",
+  frocks: "Frock",
+  babyfrock: "Frock",
+  babyfrocks: "Frock",
+
+  // Other
+  other: "Other",
 };
 
-const convertSanityCategory = (value) => categoryMap[value] || "Other";
+const convertSanityCategory = (value) => {
+  if (!value) return "Other";
+  // Strip whitespace, underscores, hyphens, and convert to lowercase
+  const cleaned = String(value).trim().toLowerCase().replace(/[\s_-]+/g, "");
+  return categoryMap[cleaned] || value;
+};
 
 export default function GalleryPage() {
   const [activeFilter, setActiveFilter] = useState("All");
-  const [filter, setFilter] = useState("All");
   const [modalImg, setModalImg] = useState(null);
 
   const [images, setImages] = useState([]);
@@ -57,22 +95,27 @@ export default function GalleryPage() {
       try {
         const data = await getProductGallery();
 
-        const formatted = data.map((item) => {
-          // ✅ Use the raw Sanity image object (item.image)
-          const imageSource = item.image; 
+        if (!Array.isArray(data)) {
+          setImages([]);
+          return;
+        }
 
-          if (!imageSource) {
-            // Check for missing image source
-            console.warn(`Skipping gallery item with title: ${item.title} (No image found)`);
-            return null;
-          }
+        const formatted = data
+          .map((item) => {
+            const imageSource = item?.image;
 
-          return {
-            // ✅ FIX: Call the global 'urlFor' helper and then call .url() once
-            src: urlFor(imageSource).url(),
-            category: convertSanityCategory(item.category),
-          };
-        }).filter(Boolean); // Filter out any null entries
+            if (!imageSource) {
+              console.warn(`Skipping gallery item: ${item?.title || "Untitled"} (No image found)`);
+              return null;
+            }
+
+            return {
+              src: urlFor(imageSource).url(),
+              title: item?.title || "Custom Designer Outfit",
+              category: convertSanityCategory(item?.category),
+            };
+          })
+          .filter(Boolean);
 
         setImages(formatted);
       } catch (error) {
@@ -87,9 +130,9 @@ export default function GalleryPage() {
 
   // Filter Logic
   const filteredImages =
-    filter === "All"
+    activeFilter === "All"
       ? images
-      : images.filter((img) => img.category === filter);
+      : images.filter((img) => img.category === activeFilter);
 
   return (
     <section className={styles.section}>
@@ -100,12 +143,10 @@ export default function GalleryPage() {
         {categories.map((cat) => (
           <button
             key={cat}
-            className={`${styles.filterBtn} ${activeFilter === cat ? styles.activeBtn : ""
-              }`}
-            onClick={() => {
-              setActiveFilter(cat);
-              setFilter(cat);
-            }}
+            className={`${styles.filterBtn} ${
+              activeFilter === cat ? styles.activeBtn : ""
+            }`}
+            onClick={() => setActiveFilter(cat)}
           >
             {cat}
           </button>
@@ -113,20 +154,25 @@ export default function GalleryPage() {
       </div>
 
       {/* LOADING STATE */}
-      {loading && <p className={styles.loading}>Loading…</p>}
+      {loading && <p className={styles.loading}>Loading boutique collection…</p>}
+
+      {/* EMPTY STATE */}
+      {!loading && filteredImages.length === 0 && (
+        <p className={styles.loading}>No items found in {activeFilter}.</p>
+      )}
 
       {/* IMAGE GRID */}
-      {!loading && (
+      {!loading && filteredImages.length > 0 && (
         <div className={styles.grid}>
           {filteredImages.map((img, i) => (
             <div key={i} className={styles.imageWrapper}>
               <Image
                 src={img.src}
                 className={styles.image}
-                alt={img.category || "Gallery item"}
+                alt={img.title || img.category || "Gallery item"}
                 width={500}
                 height={500}
-                style={{ objectFit: 'contain' }}
+                style={{ objectFit: "contain" }}
                 onClick={() => setModalImg(img.src)}
               />
             </div>
@@ -137,7 +183,15 @@ export default function GalleryPage() {
       {/* MODAL */}
       {modalImg && (
         <div className={styles.modal} onClick={() => setModalImg(null)}>
-          <Image src={modalImg} alt="Full screen preview" className={styles.modalImg} width={1200} height={1200} style={{ objectFit: 'contain' }} unoptimized />
+          <Image
+            src={modalImg}
+            alt="Full screen preview"
+            className={styles.modalImg}
+            width={1200}
+            height={1200}
+            style={{ objectFit: "contain" }}
+            unoptimized
+          />
         </div>
       )}
     </section>

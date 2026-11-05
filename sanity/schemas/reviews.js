@@ -1,4 +1,4 @@
-export default {
+const reviews = {
     name: 'reviews',
     title: 'Client Reviews',
     type: 'document',
@@ -33,5 +33,7 @@ export default {
         initialValue: true
       }
     ],
-  }
+  };
+
+export default reviews;
   

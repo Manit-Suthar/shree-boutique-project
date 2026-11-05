@@ -23,20 +23,25 @@ export const homepageSettingsQuery = groq`
   *[_type == "homepageSettings"][0] {
     heroTitle,
     heroSubtitle,
-    // Add the specific field name from your schema:
-    // 🎯 FIX 3: Change 'whatsappNumber' to 'heroButtonText' or add the actual field name from homepageSettings.js
-    heroButtonText, 
+    heroButtonText,
+    whatsappNumber,
+    heroBgStart,
+    heroBgEnd,
+    showTopBanner,
+    topBannerText,
+    topBannerLink,
   }
 `;
 
 // Query for Client Reviews (using the schema type 'reviews')
 export const reviewsQuery = groq`
-  *[_type == "reviews" && defined(review)] | order(rating desc) {
+  *[_type == "reviews" && defined(review) && (isFeatured == true || !defined(isFeatured))] | order(rating desc, _createdAt desc) {
     _id,
     name, // Client Name
     location,
     review, // Review Text
     rating,
+    isFeatured
   }
 `;
 
@@ -45,13 +50,28 @@ export const reviewsQuery = groq`
 // ---------------------------------
 
 export async function getProductGallery() {
-  return client.fetch(galleryQuery, {}, { next: { revalidate: 30 } });
+  try {
+    return await client.fetch(galleryQuery, {}, { next: { revalidate: 30 } });
+  } catch (error) {
+    console.error("Error fetching product gallery from Sanity:", error?.message || error);
+    return [];
+  }
 }
 
 export async function getHomepageSettings() {
-  return client.fetch(homepageSettingsQuery, {}, { next: { revalidate: 30 } });
+  try {
+    return await client.fetch(homepageSettingsQuery, {}, { next: { revalidate: 30 } });
+  } catch (error) {
+    console.error("Error fetching homepage settings from Sanity:", error?.message || error);
+    return null;
+  }
 }
 
 export async function getReviews() {
-  return client.fetch(reviewsQuery, {}, { next: { revalidate: 30 } });
+  try {
+    return await client.fetch(reviewsQuery, {}, { next: { revalidate: 30 } });
+  } catch (error) {
+    console.error("Error fetching reviews from Sanity:", error?.message || error);
+    return [];
+  }
 }

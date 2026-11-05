@@ -135,22 +135,81 @@
 /* RESPONSIVE (Mobile)         */
 /* ----------------------------- */
 @media (max-width: 768px) {
-  .container {
-    grid-template-columns: 1fr; /* Stack all columns */
-    gap: 40px;
-    text-align: center;
+  .footer {
+    padding-top: 36px;
   }
 
-  /* Center align items for mobile layout */
-  .column {
-    align-items: center; 
+  .container {
+    grid-template-columns: 1fr 1fr; /* Two horizontal columns side by side */
+    gap: 20px 16px;
+    padding-bottom: 24px;
+    text-align: left;
+  }
+
+  /* Brand spans horizontally across the top */
+  .brandColumn {
+    grid-column: span 2;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px dashed #eddce2;
+  }
+
+  .logoLink {
+    margin-bottom: 0;
+  }
+
+  .logo {
+    width: 100px;
   }
 
   .tagline {
-    margin: 0 auto 20px auto; /* Center tagline */
+    display: none; /* Hide long tagline to save massive vertical space */
   }
 
-  .link:hover {
-    padding-left: 0; /* Remove horizontal movement on mobile */
+  .socials {
+    margin-bottom: 0;
+    gap: 12px;
+  }
+
+  .column {
+    align-items: flex-start;
+  }
+
+  .heading {
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+
+  .linkStack {
+    gap: 6px;
+  }
+
+  .link {
+    font-size: 13px;
+    padding-left: 0;
+  }
+
+  .contactItem {
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 12.5px;
+    line-height: 1.4;
+  }
+
+  .icon {
+    min-width: 16px;
+    margin-top: 2px;
+  }
+
+  .bottomBar {
+    padding: 12px 0;
+  }
+
+  .bottomContainer {
+    font-size: 12px;
   }
 }

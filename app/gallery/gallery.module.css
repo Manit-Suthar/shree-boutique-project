@@ -108,4 +108,45 @@
     border-color: #c84b7b;
     box-shadow: 0 3px 8px rgba(200, 75, 123, 0.25);
   }
+
+  /* MOBILE RESPONSIVE 2-COLUMN COMPACT GRID */
+  @media (max-width: 640px) {
+    .section {
+      padding: 30px 12px 60px 12px;
+    }
+    .title {
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+    .filters {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      justify-content: flex-start;
+      padding: 0 4px 10px 4px;
+      gap: 8px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .filters::-webkit-scrollbar {
+      display: none;
+    }
+    .filterBtn {
+      padding: 6px 14px;
+      font-size: 13px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .imageWrapper {
+      border-radius: 10px;
+    }
+    .image {
+      height: 190px;
+      padding: 4px;
+    }
+  }
     

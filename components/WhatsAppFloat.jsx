@@ -1,27 +1,22 @@
 "use client";
 
+import WhatsAppIcon from "./icons/WhatsAppIcon";
+import styles from "./WhatsAppFloat.module.css";
+
 export default function WhatsAppFloat() {
   return (
     <a
-      href="https://wa.me/919428919432"
+      href="https://wa.me/919428919432?text=Hello%20Shree%20Boutique!%20I%20would%20like%20to%20discuss%20a%20custom%20stitching%20order."
       target="_blank"
-      style={{
-        position: "fixed",        // ALWAYS stays fixed in place
-        bottom: "20px",           // 20px from the bottom of screen
-        right: "20px",            // 20px from the right of screen
-        background: "#25D366",    // WhatsApp green
-        color: "white",
-        padding: "14px 16px",
-        borderRadius: "50%",      // Perfect circle
-        fontSize: "24px",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        boxShadow: "0px 4px 10px rgba(0,0,0,0.2)", // smooth glow
-        zIndex: 100,              // appears above everything
-      }}
+      rel="noopener noreferrer"
+      className={styles.floatBtn}
+      aria-label="Chat with Shree Boutique on WhatsApp"
     >
-      💬
+      <span className={styles.pulse}></span>
+      <div className={styles.iconWrapper}>
+        <WhatsAppIcon size={24} />
+      </div>
+      <span className={styles.label}>Chat with Designer</span>
     </a>
   );
 }

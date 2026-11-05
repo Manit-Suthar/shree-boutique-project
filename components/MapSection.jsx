@@ -7,12 +7,12 @@ export default function MapSection({
   title = "Visit Our Boutique",
   // Your Google Map Embed Link
   embedSrc = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.6667605168063!2d72.5148674!3d23.0360047!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9b4bd49610e5%3A0x443b3911754711e4!2sShyamkrupa%20Apartment%2C%20Bodakdev%2C%20Ahmedabad%2C%20Gujarat%20380015!5e0!3m2!1sen!2sin!4v1764517828568!5m2!1sen!2sin",
-  addressLine1 = "C-5, Shyamkrupa Appts., Opp. Pawan Flate,",
+  addressLine1 = "C-5, Shyamkrupa Appartment, Opp. Pawan Flate,",
   addressLine2 = "B/h Mothermilk Palace, Judges Bunglows Cross Road, Bodakdev, Ahmedabad - 380054",
   phone = "+91 94289 19432",
 }) {
 
-  const googleMapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(addressLine1 + " " + addressLine2)}`;
+  const googleMapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent("Shyamkrupa Appartment" + " " + "nr. Parichay Apartment, Bodakdev, Ahmedabad, Gujarat 380015")}`;
 
   return (
     <section className={styles.section} id="location">

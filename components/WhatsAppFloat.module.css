@@ -1,0 +1,81 @@
+.floatBtn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #25d366;
+  color: #ffffff;
+  padding: 10px 18px 10px 12px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.floatBtn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(37, 211, 102, 0.55);
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.label {
+  white-space: nowrap;
+}
+
+/* Subtle Pulsing Ring */
+.pulse {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50px;
+  border: 2px solid #25d366;
+  animation: pulseAnimation 2.2s infinite;
+  pointer-events: none;
+}
+
+@keyframes pulseAnimation {
+  0% {
+    transform: scale(0.98);
+    opacity: 0.8;
+  }
+  70% {
+    transform: scale(1.15, 1.25);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.15, 1.25);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .floatBtn {
+    bottom: 20px;
+    right: 20px;
+    padding: 14px;
+    border-radius: 50%;
+  }
+
+  .label {
+    display: none;
+  }
+
+  .pulse {
+    border-radius: 50%;
+  }
+}
+

@@ -34,33 +34,52 @@ export default function Testimonials({ fetchedReviews = [] }) {
     },
   ];
 
-  // Use fetched reviews if available, otherwise fallback to defaults
-  const testimonials = fetchedReviews && fetchedReviews.length > 0
-    ? fetchedReviews.map(r => ({
-        name: r.name,
-        text: r.review,
-        location: r.location || "Ahmedabad",
-        rating: r.rating || 5
-      }))
-    : defaultTestimonials;
+  // Merge Sanity reviews with default reviews so newly added reviews appear first without deleting the coder's curated reviews!
+  const sanityReviews = Array.isArray(fetchedReviews)
+    ? fetchedReviews
+        .map((r) => ({
+          name: r.name || "Happy Customer",
+          text: r.review || "",
+          location: r.location || "Ahmedabad",
+          rating: typeof r.rating === "number" ? r.rating : 5,
+        }))
+        .filter((r) => r.text.length > 0)
+    : [];
+
+  const existingNames = new Set(sanityReviews.map((r) => r.name.toLowerCase()));
+  const nonDuplicateDefaults = defaultTestimonials.filter(
+    (d) => !existingNames.has(d.name.toLowerCase())
+  );
+
+  const testimonials = [...sanityReviews, ...nonDuplicateDefaults];
 
   const [index, setIndex] = useState(0);
 
-  // Auto-slide logic
-  useEffect(() => {
-    const timer = setInterval(() => {
-      nextSlide();
-    }, 6000); // 6 seconds for better reading time
-    return () => clearInterval(timer);
-  }, [index]);
+  const totalReviews = testimonials.length;
 
   const nextSlide = () => {
-    setIndex((prev) => (prev + 1) % testimonials.length);
+    setIndex((prev) => (totalReviews > 0 ? (prev + 1) % totalReviews : 0));
   };
 
   const prevSlide = () => {
-    setIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
+    setIndex((prev) => (totalReviews > 0 ? (prev === 0 ? totalReviews - 1 : prev - 1) : 0));
   };
+
+  // Auto-slide logic
+  useEffect(() => {
+    if (totalReviews <= 1) return;
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % totalReviews);
+    }, 6000); // 6 seconds for better reading time
+    return () => clearInterval(timer);
+  }, [totalReviews]);
+
+  if (totalReviews === 0) {
+    return null;
+  }
+
+  const currentReview = testimonials[index] || testimonials[0];
+  const initialLetter = currentReview?.name?.trim()?.charAt(0)?.toUpperCase() || "C";
 
   return (
     <section className={styles.section} id="testimonials">
@@ -91,24 +110,24 @@ export default function Testimonials({ fetchedReviews = [] }) {
 
               {/* Star Rating */}
               <div className={styles.stars}>
-                {[...Array(testimonials[index]?.rating || 5)].map((_, i) => (
+                {[...Array(Math.min(5, Math.max(1, currentReview?.rating || 5)))].map((_, i) => (
                   <Star key={i} size={18} fill="#b76e79" stroke="none" />
                 ))}
               </div>
 
               {/* Review Text */}
-              <p className={styles.text}>"{testimonials[index].text}"</p>
+              <p className={styles.text}>&ldquo;{currentReview?.text}&rdquo;</p>
 
               {/* User Info */}
               <div className={styles.userInfo}>
                 <div className={styles.avatar}>
-                  {testimonials[index].name.charAt(0)}
+                  {initialLetter}
                 </div>
                 <div>
-                  <h4 className={styles.name}>{testimonials[index].name}</h4>
+                  <h4 className={styles.name}>{currentReview?.name}</h4>
                   <span className={styles.location}>
                     <MapPin size={12} style={{ marginRight: 4 }} />
-                    {testimonials[index].location}
+                    {currentReview?.location}
                   </span>
                 </div>
               </div>
@@ -116,8 +135,8 @@ export default function Testimonials({ fetchedReviews = [] }) {
           </AnimatePresence>
 
           {/* Navigation Buttons (Arrows) */}
-          <button className={`${styles.navBtn} ${styles.prevBtn}`} onClick={prevSlide}>&#8249;</button>
-          <button className={`${styles.navBtn} ${styles.nextBtn}`} onClick={nextSlide}>&#8250;</button>
+          <button className={`${styles.navBtn} ${styles.prevBtn}`} onClick={prevSlide} aria-label="Previous review">&#8249;</button>
+          <button className={`${styles.navBtn} ${styles.nextBtn}`} onClick={nextSlide} aria-label="Next review">&#8250;</button>
         </div>
 
         {/* Dots */}
