@@ -80,11 +80,30 @@ const convertSanityCategory = (value) => {
   return categoryMap[cleaned] || value;
 };
 
+const fallbackGallery = [
+  { src: "/gallery/blouse1.jpg", title: "Handcrafted Bridal Blouse", category: "Blouse" },
+  { src: "/gallery/blouse2.jpg", title: "Designer Embroidered Blouse", category: "Blouse" },
+  { src: "/gallery/blouse3.jpg", title: "Classic Aari Work Blouse", category: "Blouse" },
+  { src: "/gallery/blouse4.jpg", title: "Intricate Maggam Work Blouse", category: "Blouse" },
+  { src: "/gallery/blouse5.jpg", title: "Custom Back Pattern Blouse", category: "Blouse" },
+  { src: "/gallery/chaniyacholi1.jpg", title: "Traditional Navratri Chaniya Choli", category: "Chaniya Choli" },
+  { src: "/gallery/chaniyacholi2.jpg", title: "Festive Embroidered Lehenga", category: "Chaniya Choli" },
+  { src: "/gallery/chaniyacholi3.jpg", title: "Artisanal Wedding Chaniya Choli", category: "Chaniya Choli" },
+  { src: "/gallery/chaniyacholi4.jpg", title: "Mirror Work Chaniya Choli", category: "Chaniya Choli" },
+  { src: "/gallery/dress1.jpg", title: "Saree-to-Gown Redesign", category: "Dress" },
+  { src: "/gallery/dress2.jpg", title: "Indo-Western Couture Dress", category: "Dress" },
+  { src: "/gallery/dress3.jpg", title: "Elegant Party Wear Gown", category: "Dress" },
+  { src: "/gallery/dress4.jpg", title: "Contemporary Fusion Gown", category: "Dress" },
+  { src: "/services/kurtis.jpg", title: "Bespoke Kurti & Sharara Set", category: "Kurti" },
+  { src: "/gallery/frock1.jpg", title: "Artisanal Kurti & Frock", category: "Frock" },
+  { src: "/gallery/frock2.jpg", title: "Handcrafted Flare Kurti", category: "Kurti" },
+];
+
 export default function GalleryPage() {
   const [activeFilter, setActiveFilter] = useState("All");
   const [modalImg, setModalImg] = useState(null);
 
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState(fallbackGallery);
   const [loading, setLoading] = useState(true);
 
   // ---------------------------------------
@@ -95,31 +114,30 @@ export default function GalleryPage() {
       try {
         const data = await getProductGallery();
 
-        if (!Array.isArray(data)) {
-          setImages([]);
-          return;
+        if (Array.isArray(data) && data.length > 0) {
+          const formatted = data
+            .map((item) => {
+              const imageSource = item?.image;
+
+              if (!imageSource) {
+                console.warn(`Skipping gallery item: ${item?.title || "Untitled"} (No image found)`);
+                return null;
+              }
+
+              return {
+                src: urlFor(imageSource).url(),
+                title: item?.title || "Custom Designer Outfit",
+                category: convertSanityCategory(item?.category),
+              };
+            })
+            .filter(Boolean);
+
+          if (formatted.length > 0) {
+            setImages(formatted);
+          }
         }
-
-        const formatted = data
-          .map((item) => {
-            const imageSource = item?.image;
-
-            if (!imageSource) {
-              console.warn(`Skipping gallery item: ${item?.title || "Untitled"} (No image found)`);
-              return null;
-            }
-
-            return {
-              src: urlFor(imageSource).url(),
-              title: item?.title || "Custom Designer Outfit",
-              category: convertSanityCategory(item?.category),
-            };
-          })
-          .filter(Boolean);
-
-        setImages(formatted);
       } catch (error) {
-        console.error("SANITY FETCH ERROR:", error);
+        console.error("SANITY FETCH ERROR, using local showcase fallback:", error);
       } finally {
         setLoading(false);
       }
