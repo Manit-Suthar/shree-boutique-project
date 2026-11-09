@@ -30,13 +30,13 @@ export const metadata = {
     "best ladies boutique Ahmedabad",
   ],
   alternates: {
-    canonical: "https://shreeboutique.com",
+    canonical: "https://shreeboutique.vercel.app",
   },
   openGraph: {
     title: "Shree Boutique | Bespoke Tailoring & Designer Studio Ahmedabad",
     description:
       "From royal bridal blouses and chaniya cholis to artisanal kurtis and perfect fit alterations. Tailored to your exact fit in Bodakdev, Ahmedabad.",
-    url: "https://shreeboutique.com",
+    url: "https://shreeboutique.vercel.app",
     siteName: "Shree Boutique",
     locale: "en_IN",
     type: "website",
@@ -53,11 +53,11 @@ export const metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "ClothingStore",
-  "@id": "https://shreeboutique.com",
+  "@id": "https://shreeboutique.vercel.app",
   "name": "Shree Boutique",
-  "image": "https://shreeboutique.com/logo/logo.png",
+  "image": "https://shreeboutique.vercel.app/logo/logo.png",
   "description": "Premium ladies tailor and bespoke designer studio in Bodakdev, Ahmedabad. Specializing in bridal blouse stitching, chaniya cholis, custom kurtis, dresses, and alterations.",
-  "url": "https://shreeboutique.com",
+  "url": "https://shreeboutique.vercel.app",
   "telephone": "+919428919432",
   "priceRange": "₹₹",
   "address": {
