@@ -1,5 +1,5 @@
 export default function sitemap() {
-  const baseUrl = "https://shreeboutique.com";
+  const baseUrl = "https://shreeboutique.vercel.app";
 
   return [
     {
