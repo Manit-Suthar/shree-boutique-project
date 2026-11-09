@@ -19,12 +19,12 @@ export default function Footer() {
                     <p className={styles.tagline}>
                         Where tradition meets modern elegance. Custom tailoring & designer wear for the contemporary woman.
                     </p>
-                    
+
                     {/* Social Icons (Placeholders - looks professional even if not linked yet) */}
                     <div className={styles.socials}>
                         <a href="#" className={styles.socialIcon}><Instagram size={20} /></a>
                         <a href="#" className={styles.socialIcon}><Facebook size={20} /></a>
-                        <a href="mailto:contact@shreeboutique.com" className={styles.socialIcon}><Mail size={20} /></a>
+                        <a href="mailto:geeta.16.suthar@gmail.com" className={styles.socialIcon}><Mail size={20} /></a>
                     </div>
                 </div>
 
@@ -43,7 +43,7 @@ export default function Footer() {
                 {/* Column 3: Contact Info */}
                 <div className={styles.column}>
                     <h4 className={styles.heading}>Contact Us</h4>
-                    
+
                     <div className={styles.contactItem}>
                         <MapPin size={18} className={styles.icon} />
                         <p>
